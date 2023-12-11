@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <meta http-equiv="Content-Security-Policy" content="default-src &apos;self&apos; data: https://ssl.gstatic.com &apos;unsafe-eval&apos;; style-src &apos;self&apos; &apos;unsafe-inline&apos;; media-src *; img-src &apos;self&apos; data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="js/jquery-1.5.0.mobile.min.css">
+		<style>
+		.ui-header .ui-title {
+				overflow: visible !important;
+		}
+		#cjp-accordion1 .app {
+				left: 5px !important;
+				margin: 5px !important;
+				position: relative !important;
+		}
+		</style>
+        <title>Hello World</title>
+    </head>
+    <body>	
+		<div data-role="page" id="homePage">
+			<div data-role="header">
+				<h1>Home</h1>
+			</div>
+			<ul data-role="listview">
+				<li><a href="#page1">Page1</a></li>
+				<li><a href="#page2">Page2</a></li>
+				<li><a href="#page3">Page3</a></li>
+			</ul>
+			
+			<div data-role="footer" data-position="fixed">
+				<h1>Home</h1>
+			</div>
+		</div> 
+
+		<div data-role="page" id="page1">
+			<div data-role="header">
+				<a href="#" data-icon="back" data-rel="back" title="Go back">Back</a>
+				<h1>Page1</h1>
+			</div>
+
+            <div class="ui-content">
+                <p>Page 1 content goes here</p>
+                <a href="#" id="openDialogButton" data-role="button">Open Dialog</a>
+				
+
+				<div data-role="page" id="page2">
+					<div data-role="header">
+						 <a href="#" data-icon="back" data-rel="back" title="Go back">Back</a>
+						<h1>Page2</h1>
+					</div>
+		
+					<div class="ui-content">
+						<p>This is page 2</p>
+					</div>
+		
+					<div data-role="footer" data-position="fixed">
+						<h1>Page2</h1>
+					</div>
+				</div>
+
+
+
+			</div>
+      			
+			<div data-role="footer" data-position="fixed">
+				<h1>Page1</h1>
+			</div>
+		</div>
+
+
+		
+
+		
+		<div data-role="page" id="page3">
+			<div data-role="header">
+			<a href="#" data-icon="back" data-rel="back" title="Go back">Back</a>
+				<h1>Page3</h1>
+			</div>
+
+			<div class="ui-content">
+				<p>This is page 3</p>
+			</div>
+
+			<div data-role="footer" data-position="fixed">
+				<h1>Page3</h1>
+			</div>
+		</div>
+
+        <div data-role="popup" id="myDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+            <div data-role="header" data-theme="a">
+                <h1>Dialog Title</h1>
+            </div>
+            <div role="main" class="ui-content">
+                <h3 class="ui-title">Dialog Content</h3>
+                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Close</a>
+            </div>
+        </div>
+
+        <script src="cordova.js"></script>
+        
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js" id="cordova-jquery"></script>
+        
+        <script type="text/javascript" id="jqm-trans-disable">
+            $(document).on("mobileinit", function() {
+                    $.mobile.defaultPageTransition = "none";
+                    $.mobile.defaultDialogTransition = "none";
+            });
+		</script>
+
+        <script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>
+        
+        <script src="js/index.js"></script>
+
+        <script>
+            $(document).on("pagecreate", "#page1", function () {
+                $("#openDialogButton").on("click", function () {
+                    $("#myDialog").popup("open");
+                });
+            });
+        </script>
+        
+    </body>
+</html>

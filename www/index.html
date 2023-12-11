@@ -27,6 +27,8 @@
 		<div data-role="page" id="homePage">
 			<div data-role="header">
 				<h1>Home</h1>
+				<a href="#" id="nuevaListaButton" data-role="button">Nueva Lista</a>
+
 			</div>
 			<ul data-role="listview">
 				<li><a href="#page1">Page1</a></li>
@@ -74,6 +76,7 @@
 			</div>
 		</div>
 
+		<div id="nuevasListasContainer"></div>
 
 		
 
@@ -118,13 +121,6 @@
         
         <script src="js/index.js"></script>
 
-        <script>
-            $(document).on("pagecreate", "#page1", function () {
-                $("#openDialogButton").on("click", function () {
-                    $("#myDialog").popup("open");
-                });
-            });
-        </script>
         
     </body>
 </html>

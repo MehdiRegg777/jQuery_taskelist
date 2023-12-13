@@ -35,7 +35,7 @@ function onDeviceReady() {
 
 function añadirElemento(){
     var texto = prompt("Añadir tasca: ");
-    var $elem = $("<li><a href=#"+texto+">" + texto + "</a></li>");
+    var $elem = $("<li><a>" + texto + "</a></li>");
     $("ul").append($elem);
     $("ul.li-listview").listview("refresh");
 }

@@ -29,24 +29,14 @@ function onDeviceReady() {
     
     
 
-    $("#openDialogButton").click(function () {
-        $("#myDialog").popup("open");
-    });
-
-
-
-    // Asigna un controlador de eventos al botón "Nueva Lista"
-    $("#nuevaListaButton").click(function () {
-        // Crea un identificador único para la nueva página
-        var nuevaListaPageId = 'nuevaListaPage' + new Date().getTime();
-
-        // Agrega la nueva página al contenedor
-        $('#nuevasListasContainer').append('<div data-role="page" id="' + nuevaListaPageId + '"><div data-role="header"><a href="#" data-icon="back" data-rel="back" title="Go back">Back</a><h1>Nueva Lista</h1></div><div class="ui-content"><p>Contenido de la nueva lista</p></div><div data-role="footer" data-position="fixed"><h1>Nueva Lista</h1></div></div>');
-
-
-    });
-
+    $("#nuevaListaButton").on("click",añadirElemento);
 
 }
 
+function añadirElemento(){
+    var texto = prompt("Añadir tasca: ");
+    var $elem = $("<li><a href=#"+texto+">" + texto + "</a></li>");
+    $("ul").append($elem);
+    $("ul.li-listview").listview("refresh");
+}
 

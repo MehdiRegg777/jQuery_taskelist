@@ -30,13 +30,29 @@ function onDeviceReady() {
     
 
     $("#nuevaListaButton").on("click",añadirElemento);
+    $("#eliminarListaButton").on("click",eliminarElemento);
 
 }
 
 function añadirElemento(){
     var texto = prompt("Añadir tasca: ");
-    var $elem = $("<li><a>" + texto + "</a></li>");
+    var $elem = $("<li><a href=#"+texto.toLowerCase()+">" + texto + "</a></li>");
     $("ul").append($elem);
-    $("ul.li-listview").listview("refresh");
+    //$("ul.li-listview").listview("refresh");
+    $('ul[data-role="listview"]').listview("refresh");
 }
+
+function eliminarElemento() {
+    var texto = prompt("Eliminar tarea: ");
+    console.log(texto);
+
+    // Seleccionar y eliminar el elemento específico que contiene el texto
+    $('li:contains(' + texto + ')').filter(function() {
+        return $(this).text().trim() === texto;
+    }).remove();
+
+    // Actualizar el listview
+    $('ul[data-role="listview"]').listview("refresh");
+}
+
 

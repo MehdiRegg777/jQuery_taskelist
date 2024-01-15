@@ -10,6 +10,11 @@
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
+
+		<!-- Agrega enlaces para Font Awesome y jQuery -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 		<link rel="stylesheet" type="text/css" href="js/jquery-1.5.0.mobile.min.css">
 		<style>
 		.ui-header .ui-title {
@@ -23,18 +28,15 @@
 		</style>
         <title>Hello World</title>
     </head>
-    <body>		<!-- page 1 -->
+    <body data-role="pageview">
 		<div data-role="page" id="homePage">
 			<div data-role="header">
 				<h1>Home</h1>
 				<button  id="nuevaListaButton" >Nueva Lista</button>
-				<button  id="eliminarListaButton" >Eliminar Lista</button>
 
 			</div>
 			<ul data-role="listview">
-				<li><a href="#page1">Page1</a></li>
-				<li><a href="#page2">Page2</a></li>
-				<li><a href="#page3">Page3</a></li>
+				
 			</ul>
 			
 			<div data-role="footer" data-position="fixed">
@@ -42,53 +44,7 @@
 			</div><!-- /footer -->
 		</div> <!-- home page -->
 
-		<!-- page 1 -->
-		<div data-role="page" id="page1">
-			<div data-role="header">
-				<a href="#" data-icon="back" data-rel="back" title="Go back">Back</a>
-				<h1>Page1</h1>
-			</div>
-
-			<div class="ui-content">
-				<p>Page 1 content goes here</p>			
-			</div><!-- end page 1 content -->
-			
-			<div data-role="footer" data-position="fixed">
-				<h1>Page1</h1>
-			</div><!-- /footer -->
-		</div><!-- /page1 -->
-
-		<!-- page 2 -->
-		<div data-role="page" id="page2">
-			<div data-role="header">
-				 <a href="#" data-icon="back" data-rel="back" title="Go back">Back</a>
-				<h1>Page2</h1>
-			</div>
-
-			<div class="ui-content">
-				<p>This is page 2</p>
-			</div><!-- end page 2 content -->
-
-			<div data-role="footer" data-position="fixed">
-				<h1>Page2</h1>
-			</div><!-- /footer -->
-		</div><!-- /page2 -->
-
-		<!-- page 3 -->
-		<div data-role="page" id="page3">
-			<div data-role="header">
-			<a href="#" data-icon="back" data-rel="back" title="Go back">Back</a>
-				<h1>Page3</h1>
-			</div>
-
-			<div class="ui-content">
-				<p>This is page 3</p>
-			</div><!-- end page 3 content -->
-
-			<div data-role="footer" data-position="fixed">
-				<h1>Page3</h1>
-			</div><!-- /footer -->
-		</div><!-- /page3 -->
+		
 
 		<script src="cordova.js"></script>
 		<script type="text/javascript" src="js/jquery-1.11.1.min.js" id="cordova-jquery"></script>

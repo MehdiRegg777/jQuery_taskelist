@@ -36,6 +36,12 @@ function onDeviceReady() {
     $(document).on("click", ".deleteButton", eliminarElemento);
     $(document).on("click", ".editButton", editarElemento);
 
+    // Recuperar desde el Local Storage
+    var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    for (var i = 0; i < tasks.length; i++) {
+        agregarElementoALista(tasks[i]);
+    }
+
 }
 function añadirElemento() {
     var text = prompt("Añadir tasca:");
@@ -49,7 +55,7 @@ function añadirElemento() {
 
         $("ul").append($elem);
 
-        var $page = $("<div data-role='page' id='" + text + "'></div>");
+       /*  var $page = $("<div data-role='page' id='" + text + "'></div>");
         var $header = $("<div data-role='header'><a href='#' data-icon='back' data-rel='back' title='Go back'>Back</a><h1>" + text + "</h1></div>");
         var $content = $("<div class='ui-content'><p>This is " + text + "</p></div>");
         var $footer = $("<div data-role='footer' data-position='fixed'><h1>" + text + "</h1></div>");
@@ -58,9 +64,15 @@ function añadirElemento() {
         $page.append($content);
         $page.append($footer);
 
-        $("body").append($page);
+        $("body").append($page); */
 
         $('ul[data-role="listview"]').listview('refresh');
+
+        // Guardar en el Local Storage
+        var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        tasks.push(text);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+
     }
 }
 
@@ -68,6 +80,14 @@ function eliminarElemento() {
     var $a = $(this).closest("a");
     var taskID = $a.attr("href").replace("#", "");
     var $li = $a.closest("li");
+    // Eliminar del Local Storage
+    var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    var index = tasks.indexOf(taskID);
+    if (index !== -1) {
+        tasks.splice(index, 1);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
     $li.remove();
     $("#" + taskID).remove();
     $('ul[data-role="listview"]').listview('refresh');
@@ -75,7 +95,12 @@ function eliminarElemento() {
 
 function editarElemento() {
     var $a = $(this).closest("a");
-    var currentText = $a.text();
+
+    // Obtén el texto solo del elemento <a> actual (excluyendo botones)
+    var currentText = $a.contents().filter(function() {
+        return (this.nodeType === 3 && $(this).closest('.delTask').length === 0);
+    }).text();
+    // var currentText = $a.text();
     var newText = prompt("Editar tasca:");
 
     if (newText !== null && newText.trim() !== "") {
@@ -93,17 +118,42 @@ function editarElemento() {
         $a.siblings('.editButton').remove();
         $a.append($deleteButton);
         $a.append($editButton);
-        console.log(currentText);
         $("#ff").attr("id", newText);
         $("#" + newText + " h1").text(newText);
         $("#" + newText + " p").text("This is " + newText);
         $("#" + newText + " .ui-content p").text("This is " + newText);
         $("#" + newText + " .ui-footer h1").text(newText);
+
+        // Actualizar en el Local Storage
+        var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        var index = tasks.indexOf(currentText);
+        console.log(currentText);
+        console.log(index);
+        console.log(tasks);
+        if (index !== -1) {
+            tasks[index] = newText;
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
     }
     $('ul[data-role="listview"]').listview('refresh');
     $('div[data-role="page"]').listview('refresh');
+
+    
 }
 
+function agregarElementoALista(text) {
+    var $elem = $("<li><a href='#" + text + "'>" + text + "</a></li>");
+    var $deleteButton = $("<button class='delTask deleteButton' style='float: right;'>Delete</button>");
+    var $editButton = $("<button class='delTask editButton' style='float: right;'>Edit</button>");
+
+    $elem.find('a').append($deleteButton);
+    $elem.find('a').append($editButton);
+
+    $("ul").append($elem);
+
+    $('ul[data-role="listview"]').listview('refresh');
+
+}
 
 /* function edita(ev) {
     console.log("edita")
